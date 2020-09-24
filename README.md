@@ -8,9 +8,9 @@
 
 > The service book app writed in Vue.js. Using vuetify and vuex store..
 
-### 🏠 [Homepage](https://teziovsky.github.io/service-book_v2/)
+### 🏠 [Homepage](http://servicebook.ct8.pl/)
 
-### ✨ [Demo](https://teziovsky.github.io/service-book_v2/)
+### ✨ [Demo](http://servicebook.ct8.pl/)
 
 ## Install
 

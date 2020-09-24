@@ -1,9 +1,6 @@
 <template>
     <div class="serviceslist">
-        <div
-            class="text-center d-flex align-baseline"
-            v-if="this.$store.getters.cars.length"
-        >
+        <div class="text-center d-flex align-baseline" v-if="this.cars.length">
             <v-subheader class="order-first">{{
                 formatString(actualcarname)
             }}</v-subheader>
@@ -124,7 +121,7 @@
                 </v-card>
             </v-dialog>
         </div>
-        <v-alert type="warning" v-if="!this.$store.getters.cars.length">
+        <v-alert type="warning" v-if="!this.cars.length">
             <strong>No cars in the database.</strong> Add the first car to your
             service book!
         </v-alert>
@@ -178,7 +175,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["services", "actualcarname"]),
+        ...mapGetters(["services", "cars", "actualcarname"]),
         getCurrentDate() {
             return new Date().toJSON().slice(0, 10);
         },
