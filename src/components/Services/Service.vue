@@ -1,11 +1,14 @@
 <template>
-    <v-expansion-panels>
+    <v-expansion-panels class="index-0">
         <v-expansion-panel class="my-1">
             <v-expansion-panel-header>
-                <v-row no-gutters class="d-flex justify-content-around align-center breakword">
+                <v-row
+                    no-gutters
+                    class="d-flex justify-content-around align-center breakword"
+                >
                     <v-col class="pr-5">
                         <div class="caption grey--text">Title</div>
-                        <div>{{ service.name }}</div>
+                        <div>{{ service.title }}</div>
                     </v-col>
 
                     <v-col style="max-width: 85px" class="d-none d-md-block">
@@ -25,14 +28,18 @@
                             dark
                             small
                             color="error"
-                            @click.stop="deleteService(service.id)"
-                        >DELETE</v-btn>
+                            @click.stop="deleteService(index)"
+                            >DELETE</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
                 <v-divider class="py-1"></v-divider>
-                <v-row no-gutters class="justify-space-between d-flex d-md-none pb-2">
+                <v-row
+                    no-gutters
+                    class="justify-space-between d-flex d-md-none pb-2"
+                >
                     <v-col style="max-width: 85px">
                         <div class="caption grey--text">Price</div>
                         <div>{{ formattedNumber(service.price) }} zł</div>
@@ -52,8 +59,12 @@
                         <div
                             v-if="service.description.length === 0"
                             class="font-italic caption font-weight-light"
-                        >Brak opisu</div>
-                        <div v-else class="font-italic font-weight-light">{{ service.description }}</div>
+                        >
+                            Brak opisu
+                        </div>
+                        <div v-else class="font-italic font-weight-light">
+                            {{ service.description }}
+                        </div>
                     </v-col>
                 </v-row>
             </v-expansion-panel-content>
@@ -64,16 +75,16 @@
 <script>
 export default {
     name: "Service",
-    props: ["service"],
+    props: ["service", "index"],
     methods: {
         formattedNumber(value) {
             value = new Intl.NumberFormat().format(value);
             return value;
         },
-        deleteService: function(id) {
+        deleteService(id) {
             this.$store.dispatch("removeService", id);
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -83,5 +94,8 @@ export default {
 }
 .description--padding {
     padding-right: 125px;
+}
+.index-0 {
+    z-index: 0 !important;
 }
 </style>

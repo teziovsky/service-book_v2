@@ -18,19 +18,8 @@ export default {
     name: "App",
     components: {
         Navigation,
-        Credits
+        Credits,
     },
-    created() {
-        this.$store.dispatch("fetchCarNames").then(() => {
-            if (this.$store.state.cars.length !== 0) {
-                this.$store.commit(
-                    "setActualCar",
-                    this.$store.state.cars[0].carname
-                );
-                this.$store.dispatch("fetchServices");
-            }
-        });
-    }
 };
 </script>
 
