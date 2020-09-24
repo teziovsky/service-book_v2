@@ -100,7 +100,6 @@ export default {
             this.editmode = false;
         },
         deleteCar(carName, index) {
-            console.log(this.cars[index - 1]);
             this.$store.dispatch("removeCar", carName, index);
             if (index === 0) {
                 this.$store.commit("setActualCar", index);
