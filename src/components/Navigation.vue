@@ -39,7 +39,9 @@
                     <v-text-field
                         solo
                         dense
+                        id="newCarInput"
                         v-model="newCarName"
+                        :rules="[newCarRules.required, newCarRules.exist]"
                         class="mt-1"
                         @keyup.enter.native="
                             addCar(reversedFormatString(newCarName))
@@ -81,6 +83,12 @@ export default {
             drawer: false,
             editmode: false,
             newCarName: "",
+            newCarRules: {
+                required: (v) => !!v || "Name is required",
+                exist: (v) =>
+                    !this.cars.includes(this.reversedFormatString(v)) ||
+                    "This car already exists",
+            },
         };
     },
     computed: {
@@ -88,11 +96,11 @@ export default {
     },
     methods: {
         formatString(value) {
-            var newValue = value.replace(/_/g, " ").toUpperCase();
+            var newValue = value.split("_").join(" ").toUpperCase();
             return newValue;
         },
         reversedFormatString(value) {
-            var newValue = value.replace(/_/g, " ").toLowerCase();
+            var newValue = value.split(" ").join("_").toLowerCase();
             return newValue;
         },
         updateActualCar(index) {
@@ -108,8 +116,10 @@ export default {
             }
         },
         addCar(newCarName) {
-            if (this.cars.length !== 0 && this.cars.includes(newCarName)) {
-                alert("nazwa już istnieje");
+            if (this.cars.includes(this.reversedFormatString(newCarName))) {
+                document.querySelector("#newCarInput").focus();
+            } else if (this.newCarName.length === 0) {
+                document.querySelector("#newCarInput").focus();
             } else {
                 this.$store.dispatch("addCar", newCarName);
                 this.newCarName = "";
