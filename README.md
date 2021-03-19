@@ -1,14 +1,14 @@
-<h1 align="center">Welcome to service-book_v2 👋</h1>
+<h1 align="center">Welcome to service-book 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/teziovsky/service-book_v2#readme" target="_blank">
+  <a href="https://github.com/teziovsky/service-book#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
 
 > The service book app writed in Vue.js. Using vuetify and vuex store..
 
-### ✨ [Demo](http://servicebook.ct8.pl/)
+### ✨ [Demo](https://teziovsky.github.io/service-book/)
 
 ## Install
 
