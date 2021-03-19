@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/service-book/' : '/',
   transpileDependencies: ['vuetify'],
-  publicPath: '',
+  lintOnSave: true,
 };
