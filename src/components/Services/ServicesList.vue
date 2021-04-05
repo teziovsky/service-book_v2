@@ -1,25 +1,16 @@
 <template>
   <div class="serviceslist">
     <div class="text-center d-flex align-baseline" v-if="this.cars.length">
-      <v-subheader class="order-first">{{
-        formatString(actualcarname)
-      }}</v-subheader>
+      <v-subheader class="order-first">{{ formatString(actualcarname) }}</v-subheader>
       <v-dialog persistent max-width="600px" v-model="dialog">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" absolute right dark v-on="on"
-            >Add service</v-btn
-          >
+          <v-btn color="primary" absolute right dark v-on="on">Add service</v-btn>
         </template>
-        <v-card
-          @keyup.enter.native="addService"
-          @keyup.esc.native="dialog = !dialog"
-        >
+        <v-card @keyup.enter.native="addService" @keyup.esc.native="dialog = !dialog">
           <v-card-title>
             <span class="headline">Add service</span>
             <v-spacer></v-spacer>
-            <v-icon color="blue darken-1" text @click="dialog = !dialog"
-              >mdi-close</v-icon
-            >
+            <v-icon color="blue darken-1" text @click="dialog = !dialog">mdi-close</v-icon>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -102,15 +93,16 @@
               :disabled="$v.$invalid"
               outlined
               @click="addService"
-              >Add service</v-btn
             >
+              Add service
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </div>
     <v-alert type="warning" v-if="!this.cars.length">
-      <strong>No cars in the database.</strong> Add the first car to your
-      service book!
+      <strong>No cars in the database.</strong>
+      Add the first car to your service book!
     </v-alert>
     <div v-else>
       <transition name="fade-alert" mode="out-in">
@@ -130,7 +122,8 @@
           />
         </transition-group>
         <v-alert key="nodata" type="warning" class="mt-2" v-else>
-          <strong>No data.</strong> Add the first item to your service book!
+          <strong>No data.</strong>
+          Add the first item to your service book!
         </v-alert>
       </transition>
     </div>
@@ -138,47 +131,47 @@
 </template>
 
 <script>
-import Service from "./Service";
-import { validationMixin } from "vuelidate";
-import { required, minLength } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import Service from './Service';
+import { validationMixin } from 'vuelidate';
+import { required, minLength } from 'vuelidate/lib/validators';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "ServicesList",
+  name: 'ServicesList',
   mixins: [validationMixin],
   data() {
     return {
       dialog: false,
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       price: null,
       date: this.getCurrentDate,
       mileage: null,
       rules: {
-        required: (value) => !!value || "Required.",
-        title: (value) => value.length >= 3 || "Min 3 characters.",
+        required: (value) => !!value || 'Required.',
+        title: (value) => value.length >= 3 || 'Min 3 characters.',
       },
     };
   },
   computed: {
-    ...mapGetters(["services", "cars", "actualcarname"]),
+    ...mapGetters(['services', 'cars', 'actualcarname']),
     getCurrentDate() {
       return new Date().toJSON().slice(0, 10);
     },
   },
   methods: {
     resetData() {
-      this.title = "";
-      this.description = "";
+      this.title = '';
+      this.description = '';
       this.price = null;
-      this.date = "";
+      this.date = '';
       this.mileage = null;
     },
     formatString(value) {
-      var newValue = value.replace(/_/g, " ").toUpperCase();
+      var newValue = value.replace(/_/g, ' ').toUpperCase();
       return newValue;
     },
-    addService: function () {
+    addService: function() {
       let newService = [
         {
           title: this.title,
@@ -188,7 +181,7 @@ export default {
           mileage: this.mileage,
         },
       ];
-      this.$store.dispatch("addService", ...newService);
+      this.$store.dispatch('addService', ...newService);
       this.dialog = !this.dialog;
       this.resetData();
     },

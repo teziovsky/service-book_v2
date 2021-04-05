@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Navigation from "./components/Navigation";
-import Credits from "./components/Credits";
+import Navigation from './components/Navigation';
+import Credits from './components/Credits';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Navigation,
     Credits,

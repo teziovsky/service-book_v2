@@ -2,10 +2,7 @@
   <v-expansion-panels class="index-0">
     <v-expansion-panel class="my-1">
       <v-expansion-panel-header>
-        <v-row
-          no-gutters
-          class="d-flex justify-content-around align-center breakword"
-        >
+        <v-row no-gutters class="d-flex justify-content-around align-center breakword">
           <v-col class="pr-5">
             <div class="caption grey--text">Title</div>
             <div>{{ service.title }}</div>
@@ -24,9 +21,7 @@
             <div>{{ formattedNumber(service.mileage) }} km</div>
           </v-col>
           <v-col style="max-width: 75px" align-self="center">
-            <v-btn dark small color="error" @click.stop="deleteService(index)"
-              >DELETE</v-btn
-            >
+            <v-btn dark small color="error" @click.stop="deleteService(index)">DELETE</v-btn>
           </v-col>
         </v-row>
       </v-expansion-panel-header>
@@ -67,15 +62,15 @@
 
 <script>
 export default {
-  name: "Service",
-  props: ["service", "index"],
+  name: 'Service',
+  props: ['service', 'index'],
   methods: {
     formattedNumber(value) {
       value = new Intl.NumberFormat().format(value);
       return value;
     },
     deleteService(id) {
-      this.$store.dispatch("removeService", id);
+      this.$store.dispatch('removeService', id);
     },
   },
 };

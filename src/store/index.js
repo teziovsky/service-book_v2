@@ -12,7 +12,8 @@ export default new Vuex.Store({
         {
           id: 1,
           title: 'Kupno samochodu Honda Civic VIII 1.8 iVTEC 2009r.',
-          description: 'W skład ceny wchodzi: transport samochodu z niemiec, akcyza, przegląd, tłumaczenie dokumentów oraz rejestracja.',
+          description:
+            'W skład ceny wchodzi: transport samochodu z niemiec, akcyza, przegląd, tłumaczenie dokumentów oraz rejestracja.',
           price: 24300,
           date: '08.06.2020',
           mileage: 149500,
