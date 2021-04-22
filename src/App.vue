@@ -28,9 +28,11 @@ export default {
 .fade-adv-leave-active {
   transition: opacity 0.25s;
 }
+
 .fade-adv-leave-active {
   position: absolute;
 }
+
 .fade-adv-move {
   transition: transform 0.15s;
 }

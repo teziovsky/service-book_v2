@@ -1,10 +1,10 @@
 <template>
   <div class="serviceslist">
-    <div class="text-center d-flex align-baseline" v-if="this.cars.length">
+    <div v-if="this.cars.length" class="text-center d-flex align-baseline">
       <v-subheader class="order-first">{{ formatString(actualcarname) }}</v-subheader>
-      <v-dialog persistent max-width="600px" v-model="dialog">
+      <v-dialog v-model="dialog" max-width="600px" persistent>
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" absolute right dark v-on="on">Add service</v-btn>
+          <v-btn v-on="on" absolute color="primary" dark right>Add service</v-btn>
         </template>
         <v-card @keyup.enter.native="addService" @keyup.esc.native="dialog = !dialog">
           <v-card-title>
@@ -17,68 +17,68 @@
               <v-row>
                 <v-col cols="12">
                   <v-text-field
-                    label="Title of service*"
-                    v-model.lazy="title"
-                    :error="$v.title.$dirty && $v.title.$invalid"
-                    @input="$v.title.$touch()"
-                    :rules="[rules.required, rules.title]"
-                    required
+                      v-model.lazy="title"
+                      :error="$v.title.$dirty && $v.title.$invalid"
+                      :rules="[rules.required, rules.title]"
+                      label="Title of service*"
+                      required
+                      @input="$v.title.$touch()"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
-                    label="Description of service"
-                    v-model.lazy="description"
+                      v-model.lazy="description"
+                      label="Description of service"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="4" md="4">
+                <v-col cols="12" md="4" sm="4">
                   <v-text-field
-                    label="Price*"
-                    v-model.lazy="price"
-                    :error="$v.price.$dirty && $v.price.$invalid"
-                    @input="$v.price.$touch()"
-                    :rules="[rules.required]"
-                    type="number"
-                    required
+                      v-model.lazy="price"
+                      :error="$v.price.$dirty && $v.price.$invalid"
+                      :rules="[rules.required]"
+                      label="Price*"
+                      required
+                      type="number"
+                      @input="$v.price.$touch()"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="4" md="4">
+                <v-col cols="12" md="4" sm="4">
                   <v-dialog
-                    ref="dialog"
-                    :return-value.sync="date"
-                    transition="scale-transition"
-                    width="290px"
+                      ref="dialog"
+                      :return-value.sync="date"
+                      transition="scale-transition"
+                      width="290px"
                   >
                     <template v-slot:activator="{ on }">
                       <v-text-field
-                        v-model="date"
-                        :error="$v.date.$dirty && $v.date.$invalid"
-                        @input="$v.date.$touch()"
-                        :rules="[rules.required]"
-                        label="Date"
-                        readonly
-                        v-on="on"
+                          v-model="date"
+                          v-on="on"
+                          :error="$v.date.$dirty && $v.date.$invalid"
+                          :rules="[rules.required]"
+                          label="Date"
+                          readonly
+                          @input="$v.date.$touch()"
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="date"
-                      no-title
-                      :max="getCurrentDate"
-                      value="12-09-2020"
-                      @input="$refs.dialog.save(date)"
-                      scrollable
+                        v-model="date"
+                        :max="getCurrentDate"
+                        no-title
+                        scrollable
+                        value="12-09-2020"
+                        @input="$refs.dialog.save(date)"
                     ></v-date-picker>
                   </v-dialog>
                 </v-col>
-                <v-col cols="12" sm="4" md="4">
+                <v-col cols="12" md="4" sm="4">
                   <v-text-field
-                    label="Mileage*"
-                    v-model.lazy="mileage"
-                    :error="$v.mileage.$dirty && $v.mileage.$invalid"
-                    @input="$v.mileage.$touch()"
-                    :rules="[rules.required]"
-                    type="number"
-                    required
+                      v-model.lazy="mileage"
+                      :error="$v.mileage.$dirty && $v.mileage.$invalid"
+                      :rules="[rules.required]"
+                      label="Mileage*"
+                      required
+                      type="number"
+                      @input="$v.mileage.$touch()"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -88,11 +88,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              center
-              color="blue darken-1"
-              :disabled="$v.$invalid"
-              outlined
-              @click="addService"
+                :disabled="$v.$invalid"
+                center
+                color="blue darken-1"
+                outlined
+                @click="addService"
             >
               Add service
             </v-btn>
@@ -100,28 +100,28 @@
         </v-card>
       </v-dialog>
     </div>
-    <v-alert type="warning" v-if="!this.cars.length">
+    <v-alert v-if="!this.cars.length" type="warning">
       <strong>No cars in the database.</strong>
       Add the first car to your service book!
     </v-alert>
     <div v-else>
-      <transition name="fade-alert" mode="out-in">
+      <transition mode="out-in" name="fade-alert">
         <transition-group
-          tag="div"
-          class="container--fluid"
-          v-if="services.length"
-          name="fade"
-          mode="out-in"
-          appear
+            v-if="services.length"
+            appear
+            class="container--fluid"
+            mode="out-in"
+            name="fade"
+            tag="div"
         >
           <Service
-            v-for="(service, index) in services"
-            :key="index"
-            :index="index"
-            :service="service"
+              v-for="(service, index) in services"
+              :key="index"
+              :index="index"
+              :service="service"
           />
         </transition-group>
-        <v-alert key="nodata" type="warning" class="mt-2" v-else>
+        <v-alert v-else key="nodata" class="mt-2" type="warning">
           <strong>No data.</strong>
           Add the first item to your service book!
         </v-alert>
@@ -171,7 +171,7 @@ export default {
       var newValue = value.replace(/_/g, ' ').toUpperCase();
       return newValue;
     },
-    addService: function() {
+    addService: function () {
       let newService = [
         {
           title: this.title,
@@ -207,14 +207,16 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s;
 }
+
 .fade-leave-active {
   position: absolute;
 }
+
 .fade-move {
   transition: transform 0.25s;
 }
@@ -228,6 +230,7 @@ export default {
 .fade-alert-leave-active {
   transition: opacity 0.25s;
 }
+
 .fade-alert-enter,
 .fade-alert-leave-to {
   opacity: 0;
